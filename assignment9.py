@@ -6,17 +6,21 @@ import random
 def number_guessing_game(limit):
     number_to_guess = random.randint(1, limit)
     guess = None
+    attempts = 0
+    guess_history = []
     while guess != number_to_guess:
         guess = int(input(f"Guess a number between 1 and {limit}: "))
+        attempts += 1
+        guess_history.append(guess)
         if guess < number_to_guess:
             print("Too low!")
         elif guess > number_to_guess:
             print("Too high!")
     print("Congratulations! You've guessed the number.")
+    print(f"It took you {attempts} guesses.")
+    print(f"Your guesses: {guess_history}")
 
 #Manual Feature
-#difficulty setting; changes the range of numbers that can be guessed
-#easy 1-10; med 1-100; hard 1-1000
 difficulty = input("Choose difficulty (easy, medium, hard): ").lower()
 if difficulty == "easy":
     limit = 10
